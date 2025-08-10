@@ -41,7 +41,7 @@ export const listSchools = async (req, res) => {
   const userLon = parseFloat(req.query.longitude);
 
   if (isNaN(userLat) || isNaN(userLon)) {
-    return res.status(400).json({ error: 'User latitude and longitude are required as query params.' });
+    return res.status(400).json({ error: 'User latitude and longitude are required as query parameter.' });
   }
 
   try {
