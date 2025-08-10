@@ -1,7 +1,7 @@
-import 'dotenv/config';
+import dotenv from "dotenv";
 import express from 'express';
 import schoolRoutes from './routes/schoolRoutes.js';
-
+dotenv.config()
 const app = express();
 app.use(express.json());
 
