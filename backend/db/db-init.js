@@ -5,7 +5,7 @@ async function initializeDatabase() {
   let connection;
   
   try {
-    // Create connection without specifying database initially
+   
     connection = await mysql.createConnection({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
@@ -49,16 +49,6 @@ async function initializeDatabase() {
   }
 }
 
-// Run the initialization
+
 initializeDatabase();
 
-// Add this script to your package.json:
-/*
-{
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "db-init": "node db-init.js"
-  }
-}
-*/

@@ -1,16 +1,18 @@
 import pool from '../db/index.js';
 
-// Haversine formula for distance
+// Haversine formula for distance calculation in KM
 const getDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (deg) => (deg * Math.PI) / 180;
-  const R = 6371;
+  const R = 6371; // km
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
+
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) *
       Math.cos(toRad(lat2)) *
       Math.sin(dLon / 2) ** 2;
+
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 };
 
@@ -41,7 +43,7 @@ export const listSchools = async (req, res) => {
   const userLon = parseFloat(req.query.longitude);
 
   if (isNaN(userLat) || isNaN(userLon)) {
-    return res.status(400).json({ error: 'User latitude and longitude are required as query parameter.' });
+    return res.status(400).json({ error: 'User latitude and longitude are required as query parameters.' });
   }
 
   try {
@@ -50,6 +52,7 @@ export const listSchools = async (req, res) => {
       ...school,
       distance: getDistance(userLat, userLon, school.latitude, school.longitude),
     }));
+
     schoolsWithDistance.sort((a, b) => a.distance - b.distance);
     res.json(schoolsWithDistance);
   } catch (err) {
