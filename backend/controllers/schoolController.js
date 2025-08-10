@@ -53,6 +53,6 @@ export const listSchools = async (req, res) => {
     schoolsWithDistance.sort((a, b) => a.distance - b.distance);
     res.json(schoolsWithDistance);
   } catch (err) {
-    res.status(500).json({ error: 'Database error', details: err.message });
+    res.status(500).json({ error: 'Database erro3', details: err.message });
   }
 };
